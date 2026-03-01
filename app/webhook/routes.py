@@ -39,9 +39,12 @@ def _serialize_event(doc: dict) -> dict:
     """
     Convert a MongoDB document into a JSON-safe dictionary
     by turning the ObjectId ``_id`` into a plain string.
+
+    Returns a shallow copy so the original cursor document
+    is never mutated.
     """
-    doc["_id"] = str(doc["_id"])
-    return doc
+    serialized = {**doc, "_id": str(doc["_id"])}
+    return serialized
 
 
 # ==================== routes ====================
@@ -56,58 +59,29 @@ def receiver():
       • push          → stored as action "PUSH"
       • pull_request  → stored as "PULL_REQUEST" or "MERGE"
     """
+    # ---- Validate incoming request ----
     payload = request.json
+    if payload is None:
+        return jsonify({"status": "error", "reason": "Request body must be JSON"}), 400
+
     event_type = request.headers.get("X-GitHub-Event", "")
 
     # ---- Ping event (sent when webhook is first created) ----
     if event_type == "ping":
         return jsonify({"status": "pong"}), 200
 
-    # ---- PUSH event ----
-    if event_type == "push":
-        head_commit = payload.get("head_commit")
+    # ---- Parse the event inside a try/except for safety ----
+    try:
+        event = _parse_event(payload, event_type)
+    except ValueError as exc:
+        # Expected skip (untracked action) — not an error
+        return jsonify({"status": "ignored", "reason": str(exc)}), 200
+    except (KeyError, TypeError) as exc:
+        # Malformed payload — return a clear 400 instead of a 500
+        return jsonify({"status": "error", "reason": f"Malformed payload: {exc}"}), 400
 
-        # GitHub may send a push with no commits (e.g. branch deletion)
-        if head_commit is None:
-            return jsonify({"status": "ignored", "reason": "no head_commit"}), 200
-
-        event = {
-            "request_id": head_commit["id"],                       # commit SHA
-            "author":     payload["pusher"]["name"],               # pusher username
-            "action":     "PUSH",
-            "from_branch": payload["ref"].replace("refs/heads/", ""),
-            "to_branch":   payload["ref"].replace("refs/heads/", ""),
-            "timestamp":  _parse_timestamp(head_commit["timestamp"]),
-        }
-
-    # ---- PULL REQUEST / MERGE event ----
-    elif event_type == "pull_request":
-        pr = payload["pull_request"]
-        pr_action = payload.get("action", "")
-
-        # Determine the webhook action we care about
-        if pr_action == "closed" and pr.get("merged") is True:
-            action = "MERGE"
-            ts_raw = pr["merged_at"]                              # merge timestamp
-        elif pr_action in ("opened", "reopened"):
-            action = "PULL_REQUEST"
-            ts_raw = pr["created_at"]                             # PR creation time
-        else:
-            # Other sub-actions (edited, labeled, …) – acknowledge but skip
-            return jsonify({"status": "ignored", "reason": f"PR action '{pr_action}' not tracked"}), 200
-
-        event = {
-            "request_id":  str(pr["number"]),                     # PR number
-            "author":      pr["user"]["login"],                   # PR author
-            "action":      action,
-            "from_branch": pr["head"]["ref"],                     # source branch
-            "to_branch":   pr["base"]["ref"],                     # target branch
-            "timestamp":   _parse_timestamp(ts_raw),
-        }
-
-    else:
-        # Unsupported event type – acknowledge silently
-        return jsonify({"status": "ignored", "reason": f"event '{event_type}' not tracked"}), 200
+    if event is None:
+        return jsonify({"status": "ignored", "reason": "no actionable data"}), 200
 
     # ---- Duplicate guard: skip if this (request_id, action) already exists ----
     existing = mongo.db.events.find_one({
@@ -121,6 +95,72 @@ def receiver():
     mongo.db.events.insert_one(event)
 
     return jsonify({"status": "ok", "action": event["action"], "request_id": event["request_id"]}), 200
+
+
+def _parse_event(payload: dict, event_type: str) -> dict | None:
+    """
+    Extract a normalised event dict from a GitHub webhook payload.
+
+    Args:
+        payload:    The decoded JSON body from GitHub.
+        event_type: Value of the ``X-GitHub-Event`` header.
+
+    Returns:
+        A dict ready for MongoDB insertion, or ``None`` if the
+        event should be silently ignored.
+
+    Raises:
+        ValueError: When the event sub-action is not tracked
+                    (e.g. PR edited, labeled, etc.).
+        KeyError / TypeError: When the payload is missing
+                              expected fields.
+    """
+    # ---- PUSH event ----
+    if event_type == "push":
+        head_commit = payload.get("head_commit")
+
+        # GitHub may send a push with no commits (e.g. branch deletion)
+        if head_commit is None:
+            return None
+
+        branch = payload["ref"].replace("refs/heads/", "")
+
+        return {
+            "request_id":  head_commit["id"],            # commit SHA
+            "author":      payload["pusher"]["name"],    # pusher username
+            "action":      "PUSH",
+            "from_branch": branch,
+            "to_branch":   branch,
+            "timestamp":   _parse_timestamp(head_commit["timestamp"]),
+        }
+
+    # ---- PULL REQUEST / MERGE event ----
+    if event_type == "pull_request":
+        pr = payload["pull_request"]
+        pr_action = payload.get("action", "")
+
+        # Determine the webhook action we care about
+        if pr_action == "closed" and pr.get("merged") is True:
+            action = "MERGE"
+            ts_raw = pr["merged_at"]                     # merge timestamp
+        elif pr_action in ("opened", "reopened"):
+            action = "PULL_REQUEST"
+            ts_raw = pr["created_at"]                    # PR creation time
+        else:
+            # Other sub-actions (edited, labeled, …) – not tracked
+            raise ValueError(f"PR action '{pr_action}' not tracked")
+
+        return {
+            "request_id":  str(pr["number"]),             # PR number
+            "author":      pr["user"]["login"],           # PR author
+            "action":      action,
+            "from_branch": pr["head"]["ref"],             # source branch
+            "to_branch":   pr["base"]["ref"],             # target branch
+            "timestamp":   _parse_timestamp(ts_raw),
+        }
+
+    # Unsupported event type
+    raise ValueError(f"event '{event_type}' not tracked")
 
 
 @webhook.route("/events", methods=["GET"])
