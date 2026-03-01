@@ -209,6 +209,12 @@ All three event types — **Push**, **Pull Request**, and **Merge** — have bee
 
 ---
 
+## Codebase Walkthrough
+
+See [Tour of codebase.md](Tour%20of%20codebase.md) for a detailed, file-by-file walkthrough of the entire project — covering the backend, frontend, and how they connect.
+
+---
+
 ## Related Repository
 
 - **[action-repo](https://github.com/NKVRK/action-repo)** — The monitored GitHub repository that triggers webhook events.
