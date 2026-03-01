@@ -1,4 +1,15 @@
-__pycache__
-.vscode
+# Python
+__pycache__/
+*.pyc
+*.pyo
+venv/
 .env
-venv
+
+# Node / Frontend
+frontend/node_modules/
+frontend/dist/
+
+# IDE
+.vscode/
+.idea/
+*.swp

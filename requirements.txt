@@ -1,5 +1,6 @@
 Flask
 Flask-Cors
-Flask-Login
 Flask-PyMongo
 pymongo
+dnspython
+certifi
