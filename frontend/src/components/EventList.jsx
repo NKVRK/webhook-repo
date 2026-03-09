@@ -2,105 +2,63 @@
  * EventList.jsx
  * -------------
  * Core polling component that:
- *   1. Fetches ALL events on mount  (GET /webhook/events/all)
- *   2. Every 15 seconds, fetches only NEW events created after the
- *      most-recent timestamp  (GET /webhook/events?after=<ts>)
- *   3. Prepends new events to the list so the UI always shows
- *      the latest activity first, with no duplicates.
+ *   1. Fetches events from the last 15 seconds on mount (GET /webhook/events/all)
+ *   2. Every 15 seconds, replaces the displayed events with the latest
+ *      15-second window from the server (GET /webhook/events/all)
+ *   3. Only shows events that occurred within the last 15 seconds,
+ *      so the UI always reflects the most recent activity.
  *
  * Handles error states gracefully and shows a visual countdown
  * until the next poll cycle.
  */
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import EventCard from "./EventCard";
 
 /** Polling interval in milliseconds (15 seconds per spec) */
 const POLL_INTERVAL_MS = 15_000;
 
 export default function EventList() {
-  const [events, setEvents] = useState([]);           // all displayed events
+  const [events, setEvents] = useState([]);           // currently displayed events
   const [loading, setLoading] = useState(true);        // initial load spinner
   const [error, setError] = useState(null);            // error message (if any)
   const [lastPoll, setLastPoll] = useState(null);      // Date of last successful poll
   const [countdown, setCountdown] = useState(POLL_INTERVAL_MS / 1000);
-  const latestTimestamp = useRef(null);                 // newest event ts (for `after` param)
 
   /**
-   * Update the "latest timestamp" tracker so the next poll
-   * only requests events newer than this value.
+   * Fetch the latest 15-second window of events from the server
+   * and replace the current displayed list entirely.
    */
-  const updateLatestTs = useCallback((eventList) => {
-    if (eventList.length > 0) {
-      // Events arrive sorted newest-first from the API
-      latestTimestamp.current = eventList[0].timestamp;
+  const fetchLatestEvents = useCallback(async () => {
+    try {
+      const res = await fetch("/webhook/events/all");
+      if (!res.ok) throw new Error(`Server returned ${res.status}`);
+      const data = await res.json();
+      setEvents(data.events);
+      setError(null);
+    } catch (err) {
+      console.error("Polling error:", err);
+      setError("Connection lost. Will retry on next poll cycle…");
+    } finally {
+      setLastPoll(new Date());
+      setCountdown(POLL_INTERVAL_MS / 1000);
     }
   }, []);
 
-  /**
-   * Merge incoming events into state, de-duplicating by `_id`
-   * to guarantee no event appears twice on screen.
-   */
-  const mergeEvents = useCallback((incoming) => {
-    setEvents((prev) => {
-      const existingIds = new Set(prev.map((e) => e._id));
-      const fresh = incoming.filter((e) => !existingIds.has(e._id));
-      return fresh.length > 0 ? [...fresh, ...prev] : prev;
-    });
-  }, []);
-
-  /* ── initial fetch: load every stored event ── */
+  /* ── initial fetch: load events from the last 15 seconds ── */
   useEffect(() => {
-    const fetchAll = async () => {
-      try {
-        const res = await fetch("/webhook/events/all");
-        if (!res.ok) throw new Error(`Server returned ${res.status}`);
-        const data = await res.json();
-        setEvents(data.events);
-        updateLatestTs(data.events);
-        setError(null);
-      } catch (err) {
-        console.error("Failed to fetch initial events:", err);
-        setError("Unable to connect to the server. Retrying…");
-      } finally {
-        setLoading(false);
-        setLastPoll(new Date());
-      }
+    const init = async () => {
+      await fetchLatestEvents();
+      setLoading(false);
     };
+    init();
+  }, [fetchLatestEvents]);
 
-    fetchAll();
-  }, [updateLatestTs]);
-
-  /* ── incremental polling: only new events after latest ts ── */
+  /* ── polling: replace events with latest 15-second window ── */
   useEffect(() => {
-    const poll = async () => {
-      try {
-        const url = latestTimestamp.current
-          ? `/webhook/events?after=${encodeURIComponent(latestTimestamp.current)}`
-          : "/webhook/events/all";
-
-        const res = await fetch(url);
-        if (!res.ok) throw new Error(`Server returned ${res.status}`);
-        const data = await res.json();
-
-        if (data.events.length > 0) {
-          mergeEvents(data.events);
-          updateLatestTs(data.events);
-        }
-
-        setError(null); // clear any previous error on success
-      } catch (err) {
-        console.error("Polling error:", err);
-        setError("Connection lost. Will retry on next poll cycle…");
-      } finally {
-        setLastPoll(new Date());
-        setCountdown(POLL_INTERVAL_MS / 1000); // reset countdown
-      }
-    };
-
-    const intervalId = setInterval(poll, POLL_INTERVAL_MS);
+    const intervalId = setInterval(fetchLatestEvents, POLL_INTERVAL_MS);
     return () => clearInterval(intervalId);
-  }, [mergeEvents, updateLatestTs]);
+  }, [fetchLatestEvents]);
 
   /* ── countdown timer (ticks every 1 s) ── */
   useEffect(() => {

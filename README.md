@@ -13,6 +13,14 @@ GitHub (action-repo)
     ▼
 Flask Backend (webhook-repo)
     │
+    │  Enqueue
+    ▼
+Tornado Queue (concurrent workers)
+    │
+    │  Dispatch task
+    ▼
+Celery + Redis (async task processing)
+    │
     │  Store event
     ▼
 MongoDB Atlas (github_events_db)
@@ -25,8 +33,11 @@ React Frontend (webhook-repo/frontend)
 | Component | Tech Stack |
 |---|---|
 | **Backend** | Python 3.12, Flask, Flask-PyMongo |
-| **Database** | MongoDB Atlas (cloud) |
+| **Database** | MongoDB Atlas (cloud) / MongoDB 7 (Docker) |
+| **Task Queue** | Celery 5.x with Redis broker |
+| **Concurrency** | Tornado IOLoop + Queue (multithreaded workers) |
 | **Frontend** | React 19, Vite 7, TailwindCSS v4 |
+| **Containerisation** | Docker, Docker Compose |
 | **Tunnel** | ngrok (expose local server to GitHub) |
 
 ---
@@ -61,8 +72,10 @@ Timestamps are displayed as: `1st March 2026 - 11:48 AM UTC`
 
 - **Python** 3.12+
 - **Node.js** 18+ and **npm** 9+
+- **Redis** 7+ (for Celery broker)
+- **Docker** and **Docker Compose** (for containerised deployment)
 - **ngrok** (authenticated) — [https://ngrok.com](https://ngrok.com)
-- **MongoDB Atlas** cluster with a connection string
+- **MongoDB Atlas** cluster with a connection string (or use Docker MongoDB)
 - **GitHub account** with a repository to monitor (`action-repo`)
 
 ---
@@ -103,7 +116,19 @@ python run.py
 
 The server runs at `http://127.0.0.1:5000`.
 
-### 5. Frontend Setup
+### 5. Start Redis & Celery Worker
+
+In separate terminals:
+
+```bash
+# Start Redis (if not running)
+redis-server
+
+# Start the Celery worker
+celery -A celery_worker.celery worker --loglevel=info --concurrency=4
+```
+
+### 6. Frontend Setup
 
 ```bash
 cd frontend
@@ -119,7 +144,7 @@ The UI is available at `http://localhost:5173`.
 
 > **Note:** The Vite dev server proxies `/webhook/*` requests to `http://127.0.0.1:5000` automatically.
 
-### 6. Expose with ngrok
+### 7. Expose with ngrok
 
 In a separate terminal:
 
@@ -129,7 +154,7 @@ ngrok http 5000
 
 Copy the `https://...ngrok-free.dev` forwarding URL.
 
-### 7. Configure GitHub Webhook
+### 8. Configure GitHub Webhook
 
 1. Go to your **action-repo** → **Settings** → **Webhooks** → **Add webhook**
 2. Set the following:
@@ -150,8 +175,127 @@ Copy the `https://...ngrok-free.dev` forwarding URL.
 | Method | Endpoint | Description |
 |---|---|---|
 | `POST` | `/webhook/receiver` | Receives GitHub webhook payloads |
-| `GET` | `/webhook/events/all` | Returns all stored events (initial load) |
-| `GET` | `/webhook/events?after=<timestamp>` | Returns events after the given ISO-8601 timestamp (polling) |
+| `GET` | `/webhook/events/all` | Returns events from the last **15 seconds** (used for initial load + polling) |
+| `GET` | `/webhook/events?after=<timestamp>` | Returns events after the given ISO-8601 timestamp (optional incremental query) |
+
+---
+
+## Docker Deployment
+
+Run the entire stack (Flask + Celery + Redis + MongoDB + React frontend) with a single command:
+
+```bash
+docker-compose up --build
+```
+
+| Service | Container | Port |
+|---|---|---|
+| Flask Backend | `webhook-flask` | `5000` |
+| Celery Worker | `webhook-celery-worker` | — |
+| Redis | `webhook-redis` | `6379` |
+| MongoDB | `webhook-mongodb` | `27017` |
+| React Frontend | `webhook-frontend` | `80` |
+
+To stop all services:
+
+```bash
+docker-compose down
+```
+
+To stop and remove data volumes:
+
+```bash
+docker-compose down -v
+```
+
+---
+
+## Celery + Redis (Async Task Queue)
+
+### Why Redis over RabbitMQ?
+
+| Criteria | Redis | RabbitMQ |
+|---|---|---|
+| **Setup complexity** | Minimal — single binary, zero config | Requires Erlang runtime, management plugin |
+| **Dual-purpose** | Acts as both broker AND result backend | Needs a separate result backend (e.g. Redis, DB) |
+| **Resource footprint** | ~5 MB idle memory | ~100 MB+ with management plugin |
+| **Docker image size** | ~30 MB (alpine) | ~200 MB+ |
+| **Sufficient for this use case** | ✅ Webhook events are low-to-moderate volume | Overkill for this throughput |
+| **Future utility** | Can also serve as cache layer | Single-purpose message broker |
+
+**Conclusion:** Redis is the pragmatic choice — simpler deployment, lower resource usage, and perfectly adequate for the volume of GitHub webhook events this application handles.
+
+### How it works
+
+1. Flask receives a webhook → enqueues event into the **Tornado queue**
+2. A Tornado worker dispatches a **Celery task** (`store_event`)
+3. The Celery worker (connected to Redis) picks up the task and **stores it in MongoDB**
+4. If Redis/Celery is unavailable, the app falls back to **direct MongoDB insertion**
+
+### Running the Celery worker
+
+```bash
+celery -A celery_worker.celery worker --loglevel=info --concurrency=4
+```
+
+---
+
+## Multithreading (Tornado Queue)
+
+Concurrent webhook processing is implemented using **Tornado's `tornado.queues.Queue`** running in a background daemon thread.
+
+Reference: [Tornado Queue Guide](https://www.tornadoweb.org/en/stable/guide/queues.html)
+
+### How it works
+
+- On app startup, a background thread starts a **Tornado IOLoop** with 3 worker coroutines.
+- When a webhook arrives, the parsed event is enqueued via `enqueue()` (thread-safe).
+- Workers consume events concurrently and dispatch Celery tasks.
+- The Flask request handler returns **immediately** without blocking on DB writes.
+
+```
+Flask Thread                    Tornado Thread (daemon)
+    │                               │
+    │  enqueue(event)  ──────────►  Queue
+    │  return 200                   │
+    │                          Worker-0 ──► Celery task
+    │                          Worker-1 ──► Celery task
+    │                          Worker-2 ──► Celery task
+```
+
+### Key files
+
+- `app/tornado_queue.py` — Queue, workers, `enqueue()`, `init_tornado_workers()`
+- `app/tasks.py` — Celery task `store_event` dispatched by workers
+
+---
+
+## Logging
+
+File-based logging with proper format is configured in `app/logging_config.py`.
+
+### Format
+
+```
+timestamp | level    | module               | message
+```
+
+Example output:
+
+```
+2026-03-06 14:30:00 | INFO     | routes               | Received webhook: event_type=push
+2026-03-06 14:30:00 | INFO     | tornado_queue         | Dispatched Celery task: action=PUSH, request_id=abc123
+2026-03-06 14:30:01 | INFO     | tasks                 | Event stored via Celery: action=PUSH, request_id=abc123
+```
+
+### Configuration
+
+| Setting | Value |
+|---|---|
+| Log file | `logs/app.log` |
+| Rotation | 5 MB max, 5 backup files |
+| Handlers | File (rotating) + Console |
+| Level | `INFO` |
 
 ---
 
@@ -160,14 +304,25 @@ Copy the `https://...ngrok-free.dev` forwarding URL.
 ```
 webhook-repo/
 ├── run.py                  # Flask entry point
+├── celery_worker.py        # Celery worker entry point
 ├── requirements.txt        # Python dependencies (pinned)
+├── Dockerfile              # Flask backend Docker image
+├── docker-compose.yml      # Full stack orchestration
+├── .dockerignore           # Docker build exclusions
+├── Celery and Message Queue Concepts.md  # Celery & MQ concepts guide
 ├── app/
 │   ├── __init__.py         # App factory, config, DB indexes
 │   ├── extensions.py       # Shared PyMongo instance
+│   ├── logging_config.py   # File-based logging setup
+│   ├── celery_app.py       # Celery + Redis configuration
+│   ├── tasks.py            # Celery task definitions
+│   ├── tornado_queue.py    # Tornado queue workers (multithreading)
 │   └── webhook/
 │       ├── __init__.py     # Blueprint package
 │       └── routes.py       # Webhook receiver + polling API
 ├── frontend/
+│   ├── Dockerfile          # React frontend Docker image
+│   ├── nginx.conf          # Nginx config (SPA + API proxy)
 │   ├── index.html          # HTML entry point
 │   ├── vite.config.js      # Vite config (TailwindCSS + proxy)
 │   ├── package.json        # Node.js dependencies
@@ -180,6 +335,8 @@ webhook-repo/
 │       │   └── EventCard.jsx   # Single event display card
 │       └── utils/
 │           └── formatDate.js   # Timestamp formatting utility
+├── logs/
+│   └── app.log             # Application log file (auto-created)
 └── screenshots/
     └── test_results.png    # Test results screenshot
 ```
@@ -196,16 +353,25 @@ All three event types — **Push**, **Pull Request**, and **Merge** — have bee
 
 ## Key Design Decisions
 
-- **Duplicate Prevention (3 layers):**
+- **Duplicate Prevention (2 layers):**
   1. MongoDB unique compound index on `(request_id, action)`
-  2. Backend `find_one` check before insert
-  3. Frontend de-duplication by `_id` + `after` timestamp filtering
+  2. Backend `find_one` check before insert (direct fallback path)
+
+- **15-Second Event Window:** The UI displays only events from the last 15 seconds. Each poll cycle replaces the displayed list entirely by querying `/webhook/events/all`, which applies a server-side `timedelta(seconds=15)` cutoff.
+
+- **Async Processing Pipeline:** Webhook events flow through Tornado queue → Celery task → MongoDB, keeping the HTTP response fast and non-blocking.
+
+- **Graceful Degradation:** If Redis/Celery or Tornado workers are unavailable, the app falls back to synchronous direct MongoDB insertion — the webhook never silently drops events.
 
 - **Merge Detection:** GitHub sends merges as `pull_request` events with `action: "closed"` and `merged: true` — handled within the same webhook handler.
 
-- **Error Handling:** Malformed payloads return HTTP 400 with a descriptive message instead of an unhandled 500 error. The frontend shows a red error banner when the backend is unreachable.
+- **Error Handling:** All routes and background tasks are wrapped in `try–except` blocks. Malformed payloads return HTTP 400. Celery tasks auto-retry up to 3 times on failure. Errors are logged with full tracebacks.
+
+- **Structured Logging:** Every module logs with a consistent format (`timestamp | level | module | message`) to both `logs/app.log` (rotating) and console.
 
 - **Performance:** MongoDB indexes on `(request_id, action)` and `timestamp` ensure fast queries even as the events collection grows.
+
+- **Containerisation:** Docker Compose orchestrates all 5 services (Flask, Celery worker, Redis, MongoDB, React/Nginx) with a single `docker-compose up` command.
 
 ---
 

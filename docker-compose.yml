@@ -1,0 +1,72 @@
+version: '3.8'
+
+services:
+  # ── MongoDB (local instance for Docker) ──
+  mongodb:
+    image: mongo:7
+    container_name: webhook-mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    restart: unless-stopped
+
+  # ── Redis (Celery broker & result backend) ──
+  redis:
+    image: redis:7-alpine
+    container_name: webhook-redis
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+
+  # ── Flask Backend ──
+  flask:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: webhook-flask
+    ports:
+      - "5000:5000"
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017/github_events_db
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+    depends_on:
+      - mongodb
+      - redis
+    volumes:
+      - ./logs:/app/logs
+    restart: unless-stopped
+
+  # ── Celery Worker ──
+  celery-worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: webhook-celery-worker
+    command: celery -A celery_worker.celery worker --loglevel=info --concurrency=4
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017/github_events_db
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+    depends_on:
+      - mongodb
+      - redis
+    volumes:
+      - ./logs:/app/logs
+    restart: unless-stopped
+
+  # ── React Frontend (nginx) ──
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: webhook-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - flask
+    restart: unless-stopped
+
+volumes:
+  mongo_data:
