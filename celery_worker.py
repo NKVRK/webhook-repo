@@ -13,6 +13,6 @@ then exposes the ``celery`` instance for the Celery CLI to discover tasks.
 
 from app import create_app
 from app.celery_app import celery  # noqa: F401 — imported for Celery CLI discovery
-
+import app.tasks  # noqa: F401 — imported to register tasks with the worker
 # Create the Flask app so extensions (Mongo, Celery binding, etc.) are initialised.
 app = create_app()

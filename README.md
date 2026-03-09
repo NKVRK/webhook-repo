@@ -182,10 +182,31 @@ Copy the `https://...ngrok-free.dev` forwarding URL.
 
 ## Docker Deployment
 
-Run the entire stack (Flask + Celery + Redis + MongoDB + React frontend) with a single command:
+Run the entire stack (Flask + Celery + Redis + MongoDB + React frontend) and stream logs directly to your terminal with a single command:
 
 ```bash
-docker-compose up --build
+docker compose up --build
+```
+*(Press `Ctrl+C` to stop the containers)*
+
+Alternatively, to run everything in the background (detached mode):
+
+```bash
+docker compose up -d --build
+```
+
+*(Note: Older systems may require the legacy command `docker-compose up` instead of `docker compose up`)*
+
+### Viewing Logs (if running in detached mode)
+
+To view a real-time stream of logs from all services combined:
+```bash
+docker compose logs -f
+```
+
+To view logs for just the backend API:
+```bash
+docker logs -f webhook-flask
 ```
 
 | Service | Container | Port |
@@ -196,16 +217,18 @@ docker-compose up --build
 | MongoDB | `webhook-mongodb` | `27017` |
 | React Frontend | `webhook-frontend` | `80` |
 
-To stop all services:
+### Stopping Containers
+
+To stop all background services:
 
 ```bash
-docker-compose down
+docker compose down
 ```
 
-To stop and remove data volumes:
+To stop and remove data volumes (will wipe the MongoDB database):
 
 ```bash
-docker-compose down -v
+docker compose down -v
 ```
 
 ---

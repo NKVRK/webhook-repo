@@ -286,16 +286,16 @@ def get_new_events():
 @webhook.route("/events/all", methods=["GET"])
 def get_all_events():
     """
-    Return stored events from the last 15 seconds, sorted newest-first.
+    Return stored events from the last 15 minutes, sorted newest-first.
 
     Called on initial page load and on each poll cycle to show only
-    the most recent 15-second window of event data.
+    the most recent 15-minute window of event data.
 
     Returns:
         tuple: JSON response containing a list of events, and HTTP status code.
     """
     try:
-        cutoff = datetime.now(timezone.utc) - timedelta(seconds=15)
+        cutoff = datetime.now(timezone.utc) - timedelta(minutes=15)
         cutoff_str = cutoff.strftime("%Y-%m-%dT%H:%M:%SZ")
         logger.debug("Fetching all events since: %s", cutoff_str)
 

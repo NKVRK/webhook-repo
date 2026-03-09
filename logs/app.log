@@ -1,0 +1,651 @@
+2026-03-09 12:22:55 | INFO     | logging_config       | Logging configured — file: /home/ramakrishna/techstax_assessment/webhook-repo/logs/app.log
+2026-03-09 12:22:55 | INFO     | __init__             | MongoDB connection initialised
+2026-03-09 12:22:55 | INFO     | __init__             | CORS enabled
+2026-03-09 12:22:55 | INFO     | __init__             | Celery initialised with Redis broker
+2026-03-09 12:22:55 | INFO     | tornado_queue        | Tornado queue workers initialised: 3 workers in thread 'tornado-queue-workers'
+2026-03-09 12:22:55 | INFO     | __init__             | Webhook blueprint registered
+2026-03-09 12:22:55 | INFO     | tornado_queue        | Tornado IOLoop starting with 3 workers
+2026-03-09 12:22:55 | INFO     | tornado_queue        | Tornado worker-0 started
+2026-03-09 12:22:55 | INFO     | tornado_queue        | Tornado worker-1 started
+2026-03-09 12:22:55 | INFO     | tornado_queue        | Tornado worker-2 started
+2026-03-09 12:23:08 | INFO     | __init__             | MongoDB indexes ensured successfully
+2026-03-09 12:23:08 | INFO     | __init__             | Application factory complete — app ready
+2026-03-09 12:23:08 | INFO     | _internal            | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-03-09 12:23:08 | INFO     | _internal            | [33mPress CTRL+C to quit[0m
+2026-03-09 12:23:08 | INFO     | _internal            |  * Restarting with stat
+2026-03-09 12:23:08 | INFO     | logging_config       | Logging configured — file: /home/ramakrishna/techstax_assessment/webhook-repo/logs/app.log
+2026-03-09 12:23:08 | INFO     | __init__             | MongoDB connection initialised
+2026-03-09 12:23:08 | INFO     | __init__             | CORS enabled
+2026-03-09 12:23:08 | INFO     | __init__             | Celery initialised with Redis broker
+2026-03-09 12:23:08 | INFO     | tornado_queue        | Tornado queue workers initialised: 3 workers in thread 'tornado-queue-workers'
+2026-03-09 12:23:08 | INFO     | __init__             | Webhook blueprint registered
+2026-03-09 12:23:08 | INFO     | tornado_queue        | Tornado IOLoop starting with 3 workers
+2026-03-09 12:23:08 | INFO     | tornado_queue        | Tornado worker-0 started
+2026-03-09 12:23:08 | INFO     | tornado_queue        | Tornado worker-1 started
+2026-03-09 12:23:08 | INFO     | tornado_queue        | Tornado worker-2 started
+2026-03-09 12:23:20 | INFO     | __init__             | MongoDB indexes ensured successfully
+2026-03-09 12:23:20 | INFO     | __init__             | Application factory complete — app ready
+2026-03-09 12:23:20 | WARNING  | _internal            |  * Debugger is active!
+2026-03-09 12:23:20 | INFO     | _internal            |  * Debugger PIN: 380-519-075
+2026-03-09 12:27:35 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 12:27:35 | INFO     | _internal            | 127.0.0.1 - - [09/Mar/2026 12:27:35] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 12:27:50 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 12:27:50 | INFO     | _internal            | 127.0.0.1 - - [09/Mar/2026 12:27:50] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 12:28:06 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 12:28:06 | INFO     | _internal            | 127.0.0.1 - - [09/Mar/2026 12:28:06] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 12:28:21 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 12:28:21 | INFO     | _internal            | 127.0.0.1 - - [09/Mar/2026 12:28:21] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 12:28:21 | INFO     | routes               | Received webhook: event_type=push
+2026-03-09 12:28:21 | INFO     | routes               | Event enqueued for async processing: action=PUSH, request_id=c37cc6a393a2b703ef77b5468b7e167b2c050752
+2026-03-09 12:28:21 | INFO     | _internal            | 127.0.0.1 - - [09/Mar/2026 12:28:21] "POST /webhook/receiver HTTP/1.1" 200 -
+2026-03-09 12:28:21 | INFO     | tornado_queue        | Dispatched Celery task: action=PUSH, request_id=c37cc6a393a2b703ef77b5468b7e167b2c050752
+2026-03-09 12:28:35 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 12:28:35 | INFO     | _internal            | 127.0.0.1 - - [09/Mar/2026 12:28:35] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 12:28:38 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 12:28:38 | INFO     | _internal            | 127.0.0.1 - - [09/Mar/2026 12:28:38] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 12:28:54 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 12:28:54 | INFO     | _internal            | 127.0.0.1 - - [09/Mar/2026 12:28:54] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 12:29:09 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 12:29:09 | INFO     | _internal            | 127.0.0.1 - - [09/Mar/2026 12:29:09] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 12:29:24 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 12:29:24 | INFO     | _internal            | 127.0.0.1 - - [09/Mar/2026 12:29:24] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 12:29:39 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 12:29:39 | INFO     | _internal            | 127.0.0.1 - - [09/Mar/2026 12:29:39] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 12:29:53 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 12:29:53 | INFO     | _internal            | 127.0.0.1 - - [09/Mar/2026 12:29:53] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 12:29:56 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 12:29:56 | INFO     | _internal            | 127.0.0.1 - - [09/Mar/2026 12:29:56] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 12:30:12 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 12:30:12 | INFO     | _internal            | 127.0.0.1 - - [09/Mar/2026 12:30:12] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 12:30:27 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 12:30:27 | INFO     | _internal            | 127.0.0.1 - - [09/Mar/2026 12:30:27] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 12:30:41 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 12:30:41 | INFO     | _internal            | 127.0.0.1 - - [09/Mar/2026 12:30:41] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 12:30:56 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 12:30:56 | INFO     | _internal            | 127.0.0.1 - - [09/Mar/2026 12:30:56] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 12:31:12 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 12:31:12 | INFO     | _internal            | 127.0.0.1 - - [09/Mar/2026 12:31:12] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 12:31:20 | INFO     | routes               | Received webhook: event_type=push
+2026-03-09 12:31:20 | INFO     | routes               | Event enqueued for async processing: action=PUSH, request_id=0d4d79ac4af21a6a99ab9a0a050fc2cd20a7af79
+2026-03-09 12:31:20 | INFO     | _internal            | 127.0.0.1 - - [09/Mar/2026 12:31:20] "POST /webhook/receiver HTTP/1.1" 200 -
+2026-03-09 12:31:20 | INFO     | tornado_queue        | Dispatched Celery task: action=PUSH, request_id=0d4d79ac4af21a6a99ab9a0a050fc2cd20a7af79
+2026-03-09 12:31:26 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 12:31:26 | INFO     | _internal            | 127.0.0.1 - - [09/Mar/2026 12:31:26] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 12:31:41 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 12:31:41 | INFO     | _internal            | 127.0.0.1 - - [09/Mar/2026 12:31:41] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 12:31:56 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 12:31:56 | INFO     | _internal            | 127.0.0.1 - - [09/Mar/2026 12:31:56] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 12:32:11 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 12:32:11 | INFO     | _internal            | 127.0.0.1 - - [09/Mar/2026 12:32:11] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 12:32:26 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 12:32:26 | INFO     | _internal            | 127.0.0.1 - - [09/Mar/2026 12:32:26] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 12:32:41 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 12:32:41 | INFO     | _internal            | 127.0.0.1 - - [09/Mar/2026 12:32:41] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 12:32:56 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 12:32:56 | INFO     | _internal            | 127.0.0.1 - - [09/Mar/2026 12:32:56] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 12:33:11 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 12:33:11 | INFO     | _internal            | 127.0.0.1 - - [09/Mar/2026 12:33:11] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 12:33:26 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 12:33:26 | INFO     | _internal            | 127.0.0.1 - - [09/Mar/2026 12:33:26] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 12:33:41 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 12:33:41 | INFO     | _internal            | 127.0.0.1 - - [09/Mar/2026 12:33:41] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 12:33:56 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 12:33:56 | INFO     | _internal            | 127.0.0.1 - - [09/Mar/2026 12:33:56] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 12:34:11 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 12:34:11 | INFO     | _internal            | 127.0.0.1 - - [09/Mar/2026 12:34:11] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 12:34:27 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 12:34:27 | INFO     | _internal            | 127.0.0.1 - - [09/Mar/2026 12:34:27] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 12:34:41 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 12:34:41 | INFO     | _internal            | 127.0.0.1 - - [09/Mar/2026 12:34:41] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 12:34:56 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 12:34:56 | INFO     | _internal            | 127.0.0.1 - - [09/Mar/2026 12:34:56] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 12:35:11 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 12:35:11 | INFO     | _internal            | 127.0.0.1 - - [09/Mar/2026 12:35:11] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 12:35:26 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 12:35:26 | INFO     | _internal            | 127.0.0.1 - - [09/Mar/2026 12:35:26] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 12:35:41 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 12:35:41 | INFO     | _internal            | 127.0.0.1 - - [09/Mar/2026 12:35:41] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 12:35:56 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 12:35:56 | INFO     | _internal            | 127.0.0.1 - - [09/Mar/2026 12:35:56] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 12:36:11 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 12:36:11 | INFO     | _internal            | 127.0.0.1 - - [09/Mar/2026 12:36:11] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 12:36:26 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 12:36:26 | INFO     | _internal            | 127.0.0.1 - - [09/Mar/2026 12:36:26] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 12:36:41 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 12:36:41 | INFO     | _internal            | 127.0.0.1 - - [09/Mar/2026 12:36:41] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 12:36:56 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 12:36:56 | INFO     | _internal            | 127.0.0.1 - - [09/Mar/2026 12:36:56] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 12:37:11 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 12:37:11 | INFO     | _internal            | 127.0.0.1 - - [09/Mar/2026 12:37:11] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 12:37:27 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 12:37:27 | INFO     | _internal            | 127.0.0.1 - - [09/Mar/2026 12:37:27] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 12:39:20 | INFO     | logging_config       | Logging configured — file: /home/ramakrishna/techstax_assessment/webhook-repo/logs/app.log
+2026-03-09 12:39:20 | INFO     | __init__             | MongoDB connection initialised
+2026-03-09 12:39:20 | INFO     | __init__             | CORS enabled
+2026-03-09 12:39:21 | INFO     | __init__             | Celery initialised with Redis broker
+2026-03-09 12:39:21 | INFO     | tornado_queue        | Tornado queue workers initialised: 3 workers in thread 'tornado-queue-workers'
+2026-03-09 12:39:21 | INFO     | __init__             | Webhook blueprint registered
+2026-03-09 12:39:21 | INFO     | tornado_queue        | Tornado IOLoop starting with 3 workers
+2026-03-09 12:39:21 | INFO     | tornado_queue        | Tornado worker-0 started
+2026-03-09 12:39:21 | INFO     | tornado_queue        | Tornado worker-1 started
+2026-03-09 12:39:21 | INFO     | tornado_queue        | Tornado worker-2 started
+2026-03-09 12:39:39 | INFO     | __init__             | MongoDB indexes ensured successfully
+2026-03-09 12:39:39 | INFO     | __init__             | Application factory complete — app ready
+2026-03-09 12:39:39 | INFO     | _internal            | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-03-09 12:39:39 | INFO     | _internal            | [33mPress CTRL+C to quit[0m
+2026-03-09 12:39:39 | INFO     | _internal            |  * Restarting with stat
+2026-03-09 12:39:39 | INFO     | logging_config       | Logging configured — file: /home/ramakrishna/techstax_assessment/webhook-repo/logs/app.log
+2026-03-09 12:39:39 | INFO     | __init__             | MongoDB connection initialised
+2026-03-09 12:39:39 | INFO     | __init__             | CORS enabled
+2026-03-09 12:39:39 | INFO     | __init__             | Celery initialised with Redis broker
+2026-03-09 12:39:39 | INFO     | tornado_queue        | Tornado queue workers initialised: 3 workers in thread 'tornado-queue-workers'
+2026-03-09 12:39:39 | INFO     | __init__             | Webhook blueprint registered
+2026-03-09 12:39:39 | INFO     | tornado_queue        | Tornado IOLoop starting with 3 workers
+2026-03-09 12:39:39 | INFO     | tornado_queue        | Tornado worker-0 started
+2026-03-09 12:39:39 | INFO     | tornado_queue        | Tornado worker-1 started
+2026-03-09 12:39:39 | INFO     | tornado_queue        | Tornado worker-2 started
+2026-03-09 12:39:52 | INFO     | __init__             | MongoDB indexes ensured successfully
+2026-03-09 12:39:52 | INFO     | __init__             | Application factory complete — app ready
+2026-03-09 12:39:52 | WARNING  | _internal            |  * Debugger is active!
+2026-03-09 12:39:52 | INFO     | _internal            |  * Debugger PIN: 380-519-075
+2026-03-09 07:12:56 | INFO     | logging_config       | Logging configured — file: /app/logs/app.log
+2026-03-09 07:12:56 | INFO     | __init__             | MongoDB connection initialised
+2026-03-09 07:12:56 | INFO     | __init__             | CORS enabled
+2026-03-09 07:12:56 | INFO     | __init__             | Celery initialised with Redis broker
+2026-03-09 07:12:56 | INFO     | tornado_queue        | Tornado queue workers initialised: 3 workers in thread 'tornado-queue-workers'
+2026-03-09 07:12:56 | INFO     | __init__             | Webhook blueprint registered
+2026-03-09 07:12:56 | INFO     | tornado_queue        | Tornado IOLoop starting with 3 workers
+2026-03-09 07:12:56 | INFO     | tornado_queue        | Tornado worker-0 started
+2026-03-09 07:12:56 | INFO     | tornado_queue        | Tornado worker-1 started
+2026-03-09 07:12:56 | INFO     | tornado_queue        | Tornado worker-2 started
+2026-03-09 07:12:56 | INFO     | __init__             | MongoDB indexes ensured successfully
+2026-03-09 07:12:56 | INFO     | __init__             | Application factory complete — app ready
+2026-03-09 07:15:26 | INFO     | logging_config       | Logging configured — file: /app/logs/app.log
+2026-03-09 07:15:26 | INFO     | __init__             | MongoDB connection initialised
+2026-03-09 07:15:26 | INFO     | __init__             | CORS enabled
+2026-03-09 07:15:26 | INFO     | __init__             | Celery initialised with Redis broker
+2026-03-09 07:15:26 | INFO     | tornado_queue        | Tornado queue workers initialised: 3 workers in thread 'tornado-queue-workers'
+2026-03-09 07:15:26 | INFO     | __init__             | Webhook blueprint registered
+2026-03-09 07:15:26 | INFO     | tornado_queue        | Tornado IOLoop starting with 3 workers
+2026-03-09 07:15:26 | INFO     | tornado_queue        | Tornado worker-0 started
+2026-03-09 07:15:26 | INFO     | tornado_queue        | Tornado worker-1 started
+2026-03-09 07:15:26 | INFO     | tornado_queue        | Tornado worker-2 started
+2026-03-09 07:15:26 | INFO     | __init__             | MongoDB indexes ensured successfully
+2026-03-09 07:15:26 | INFO     | __init__             | Application factory complete — app ready
+2026-03-09 07:15:26 | INFO     | _internal            | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-03-09 07:15:26 | INFO     | _internal            | [33mPress CTRL+C to quit[0m
+2026-03-09 07:15:26 | INFO     | _internal            |  * Restarting with stat
+2026-03-09 07:15:26 | INFO     | logging_config       | Logging configured — file: /app/logs/app.log
+2026-03-09 07:15:26 | INFO     | __init__             | MongoDB connection initialised
+2026-03-09 07:15:26 | INFO     | __init__             | CORS enabled
+2026-03-09 07:15:26 | INFO     | __init__             | Celery initialised with Redis broker
+2026-03-09 07:15:26 | INFO     | tornado_queue        | Tornado queue workers initialised: 3 workers in thread 'tornado-queue-workers'
+2026-03-09 07:15:26 | INFO     | __init__             | Webhook blueprint registered
+2026-03-09 07:15:26 | INFO     | tornado_queue        | Tornado IOLoop starting with 3 workers
+2026-03-09 07:15:26 | INFO     | tornado_queue        | Tornado worker-0 started
+2026-03-09 07:15:26 | INFO     | tornado_queue        | Tornado worker-1 started
+2026-03-09 07:15:26 | INFO     | tornado_queue        | Tornado worker-2 started
+2026-03-09 07:15:26 | INFO     | __init__             | MongoDB indexes ensured successfully
+2026-03-09 07:15:26 | INFO     | __init__             | Application factory complete — app ready
+2026-03-09 07:15:26 | WARNING  | _internal            |  * Debugger is active!
+2026-03-09 07:15:26 | INFO     | _internal            |  * Debugger PIN: 980-159-653
+2026-03-09 12:55:08 | INFO     | logging_config       | Logging configured — file: /home/ramakrishna/techstax_assessment/webhook-repo/logs/app.log
+2026-03-09 12:55:08 | INFO     | __init__             | MongoDB connection initialised
+2026-03-09 12:55:08 | INFO     | __init__             | CORS enabled
+2026-03-09 12:55:08 | INFO     | __init__             | Celery initialised with Redis broker
+2026-03-09 12:55:08 | INFO     | tornado_queue        | Tornado queue workers initialised: 3 workers in thread 'tornado-queue-workers'
+2026-03-09 12:55:08 | INFO     | __init__             | Webhook blueprint registered
+2026-03-09 12:55:08 | INFO     | tornado_queue        | Tornado IOLoop starting with 3 workers
+2026-03-09 12:55:08 | INFO     | tornado_queue        | Tornado worker-0 started
+2026-03-09 12:55:08 | INFO     | tornado_queue        | Tornado worker-1 started
+2026-03-09 12:55:08 | INFO     | tornado_queue        | Tornado worker-2 started
+2026-03-09 12:55:21 | INFO     | __init__             | MongoDB indexes ensured successfully
+2026-03-09 12:55:21 | INFO     | __init__             | Application factory complete — app ready
+2026-03-09 12:57:06 | INFO     | logging_config       | Logging configured — file: /home/ramakrishna/techstax_assessment/webhook-repo/logs/app.log
+2026-03-09 12:57:07 | INFO     | __init__             | MongoDB connection initialised
+2026-03-09 12:57:07 | INFO     | __init__             | CORS enabled
+2026-03-09 12:57:07 | INFO     | __init__             | Celery initialised with Redis broker
+2026-03-09 12:57:07 | INFO     | tornado_queue        | Tornado queue workers initialised: 3 workers in thread 'tornado-queue-workers'
+2026-03-09 12:57:07 | INFO     | __init__             | Webhook blueprint registered
+2026-03-09 12:57:07 | INFO     | tornado_queue        | Tornado IOLoop starting with 3 workers
+2026-03-09 12:57:07 | INFO     | tornado_queue        | Tornado worker-0 started
+2026-03-09 12:57:07 | INFO     | tornado_queue        | Tornado worker-1 started
+2026-03-09 12:57:07 | INFO     | tornado_queue        | Tornado worker-2 started
+2026-03-09 12:57:19 | INFO     | __init__             | MongoDB indexes ensured successfully
+2026-03-09 12:57:19 | INFO     | __init__             | Application factory complete — app ready
+2026-03-09 12:57:19 | INFO     | _internal            | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-03-09 12:57:19 | INFO     | _internal            | [33mPress CTRL+C to quit[0m
+2026-03-09 12:57:19 | INFO     | _internal            |  * Restarting with stat
+2026-03-09 12:57:20 | INFO     | logging_config       | Logging configured — file: /home/ramakrishna/techstax_assessment/webhook-repo/logs/app.log
+2026-03-09 12:57:20 | INFO     | __init__             | MongoDB connection initialised
+2026-03-09 12:57:20 | INFO     | __init__             | CORS enabled
+2026-03-09 12:57:20 | INFO     | __init__             | Celery initialised with Redis broker
+2026-03-09 12:57:20 | INFO     | tornado_queue        | Tornado queue workers initialised: 3 workers in thread 'tornado-queue-workers'
+2026-03-09 12:57:20 | INFO     | __init__             | Webhook blueprint registered
+2026-03-09 12:57:20 | INFO     | tornado_queue        | Tornado IOLoop starting with 3 workers
+2026-03-09 12:57:20 | INFO     | tornado_queue        | Tornado worker-0 started
+2026-03-09 12:57:20 | INFO     | tornado_queue        | Tornado worker-1 started
+2026-03-09 12:57:20 | INFO     | tornado_queue        | Tornado worker-2 started
+2026-03-09 12:57:32 | INFO     | __init__             | MongoDB indexes ensured successfully
+2026-03-09 12:57:32 | INFO     | __init__             | Application factory complete — app ready
+2026-03-09 12:57:32 | WARNING  | _internal            |  * Debugger is active!
+2026-03-09 12:57:32 | INFO     | _internal            |  * Debugger PIN: 764-738-019
+2026-03-09 07:29:27 | INFO     | logging_config       | Logging configured — file: /app/logs/app.log
+2026-03-09 07:29:27 | INFO     | __init__             | MongoDB connection initialised
+2026-03-09 07:29:27 | INFO     | __init__             | CORS enabled
+2026-03-09 07:29:27 | INFO     | __init__             | Celery initialised with Redis broker
+2026-03-09 07:29:27 | INFO     | tornado_queue        | Tornado queue workers initialised: 3 workers in thread 'tornado-queue-workers'
+2026-03-09 07:29:27 | INFO     | __init__             | Webhook blueprint registered
+2026-03-09 07:29:27 | INFO     | tornado_queue        | Tornado IOLoop starting with 3 workers
+2026-03-09 07:29:27 | INFO     | tornado_queue        | Tornado worker-0 started
+2026-03-09 07:29:27 | INFO     | tornado_queue        | Tornado worker-1 started
+2026-03-09 07:29:27 | INFO     | tornado_queue        | Tornado worker-2 started
+2026-03-09 07:29:27 | INFO     | __init__             | MongoDB indexes ensured successfully
+2026-03-09 07:29:27 | INFO     | __init__             | Application factory complete — app ready
+2026-03-09 07:29:27 | INFO     | _internal            | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-03-09 07:29:27 | INFO     | _internal            | [33mPress CTRL+C to quit[0m
+2026-03-09 07:29:27 | INFO     | _internal            |  * Restarting with stat
+2026-03-09 07:29:27 | INFO     | logging_config       | Logging configured — file: /app/logs/app.log
+2026-03-09 07:29:27 | INFO     | __init__             | MongoDB connection initialised
+2026-03-09 07:29:27 | INFO     | __init__             | CORS enabled
+2026-03-09 07:29:27 | INFO     | __init__             | Celery initialised with Redis broker
+2026-03-09 07:29:27 | INFO     | tornado_queue        | Tornado queue workers initialised: 3 workers in thread 'tornado-queue-workers'
+2026-03-09 07:29:27 | INFO     | __init__             | Webhook blueprint registered
+2026-03-09 07:29:27 | INFO     | tornado_queue        | Tornado IOLoop starting with 3 workers
+2026-03-09 07:29:27 | INFO     | tornado_queue        | Tornado worker-0 started
+2026-03-09 07:29:27 | INFO     | tornado_queue        | Tornado worker-1 started
+2026-03-09 07:29:27 | INFO     | tornado_queue        | Tornado worker-2 started
+2026-03-09 07:29:27 | INFO     | __init__             | MongoDB indexes ensured successfully
+2026-03-09 07:29:27 | INFO     | __init__             | Application factory complete — app ready
+2026-03-09 07:29:27 | INFO     | logging_config       | Logging configured — file: /app/logs/app.log
+2026-03-09 07:29:27 | INFO     | __init__             | MongoDB connection initialised
+2026-03-09 07:29:27 | INFO     | __init__             | CORS enabled
+2026-03-09 07:29:27 | INFO     | __init__             | Celery initialised with Redis broker
+2026-03-09 07:29:27 | INFO     | tornado_queue        | Tornado queue workers initialised: 3 workers in thread 'tornado-queue-workers'
+2026-03-09 07:29:27 | INFO     | __init__             | Webhook blueprint registered
+2026-03-09 07:29:27 | INFO     | tornado_queue        | Tornado IOLoop starting with 3 workers
+2026-03-09 07:29:27 | INFO     | tornado_queue        | Tornado worker-0 started
+2026-03-09 07:29:27 | INFO     | tornado_queue        | Tornado worker-1 started
+2026-03-09 07:29:27 | INFO     | tornado_queue        | Tornado worker-2 started
+2026-03-09 07:29:27 | INFO     | __init__             | MongoDB indexes ensured successfully
+2026-03-09 07:29:27 | INFO     | __init__             | Application factory complete — app ready
+2026-03-09 07:29:27 | WARNING  | _internal            |  * Debugger is active!
+2026-03-09 07:29:27 | INFO     | _internal            |  * Debugger PIN: 549-296-372
+2026-03-09 07:35:07 | INFO     | logging_config       | Logging configured — file: /app/logs/app.log
+2026-03-09 07:35:07 | INFO     | __init__             | MongoDB connection initialised
+2026-03-09 07:35:07 | INFO     | __init__             | CORS enabled
+2026-03-09 07:35:07 | INFO     | __init__             | Celery initialised with Redis broker
+2026-03-09 07:35:07 | INFO     | tornado_queue        | Tornado queue workers initialised: 3 workers in thread 'tornado-queue-workers'
+2026-03-09 07:35:07 | INFO     | __init__             | Webhook blueprint registered
+2026-03-09 07:35:07 | INFO     | tornado_queue        | Tornado IOLoop starting with 3 workers
+2026-03-09 07:35:07 | INFO     | tornado_queue        | Tornado worker-0 started
+2026-03-09 07:35:07 | INFO     | tornado_queue        | Tornado worker-1 started
+2026-03-09 07:35:07 | INFO     | tornado_queue        | Tornado worker-2 started
+2026-03-09 07:35:07 | INFO     | __init__             | MongoDB indexes ensured successfully
+2026-03-09 07:35:07 | INFO     | __init__             | Application factory complete — app ready
+2026-03-09 07:35:07 | INFO     | _internal            | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-03-09 07:35:07 | INFO     | _internal            | [33mPress CTRL+C to quit[0m
+2026-03-09 07:35:07 | INFO     | _internal            |  * Restarting with stat
+2026-03-09 07:35:08 | INFO     | logging_config       | Logging configured — file: /app/logs/app.log
+2026-03-09 07:35:08 | INFO     | __init__             | MongoDB connection initialised
+2026-03-09 07:35:08 | INFO     | __init__             | CORS enabled
+2026-03-09 07:35:08 | INFO     | __init__             | Celery initialised with Redis broker
+2026-03-09 07:35:08 | INFO     | tornado_queue        | Tornado queue workers initialised: 3 workers in thread 'tornado-queue-workers'
+2026-03-09 07:35:08 | INFO     | __init__             | Webhook blueprint registered
+2026-03-09 07:35:08 | INFO     | tornado_queue        | Tornado IOLoop starting with 3 workers
+2026-03-09 07:35:08 | INFO     | tornado_queue        | Tornado worker-0 started
+2026-03-09 07:35:08 | INFO     | tornado_queue        | Tornado worker-1 started
+2026-03-09 07:35:08 | INFO     | tornado_queue        | Tornado worker-2 started
+2026-03-09 07:35:08 | INFO     | __init__             | MongoDB indexes ensured successfully
+2026-03-09 07:35:08 | INFO     | __init__             | Application factory complete — app ready
+2026-03-09 07:35:08 | WARNING  | _internal            |  * Debugger is active!
+2026-03-09 07:35:08 | INFO     | _internal            |  * Debugger PIN: 108-959-041
+2026-03-09 07:36:27 | INFO     | logging_config       | Logging configured — file: /app/logs/app.log
+2026-03-09 07:36:27 | INFO     | __init__             | MongoDB connection initialised
+2026-03-09 07:36:27 | INFO     | __init__             | CORS enabled
+2026-03-09 07:36:27 | INFO     | __init__             | Celery initialised with Redis broker
+2026-03-09 07:36:27 | INFO     | tornado_queue        | Tornado queue workers initialised: 3 workers in thread 'tornado-queue-workers'
+2026-03-09 07:36:27 | INFO     | __init__             | Webhook blueprint registered
+2026-03-09 07:36:27 | INFO     | tornado_queue        | Tornado IOLoop starting with 3 workers
+2026-03-09 07:36:27 | INFO     | tornado_queue        | Tornado worker-0 started
+2026-03-09 07:36:27 | INFO     | tornado_queue        | Tornado worker-1 started
+2026-03-09 07:36:27 | INFO     | tornado_queue        | Tornado worker-2 started
+2026-03-09 07:36:27 | INFO     | __init__             | MongoDB indexes ensured successfully
+2026-03-09 07:36:27 | INFO     | __init__             | Application factory complete — app ready
+2026-03-09 07:36:27 | INFO     | _internal            | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.21.0.4:5000
+2026-03-09 07:36:27 | INFO     | _internal            | [33mPress CTRL+C to quit[0m
+2026-03-09 07:36:27 | INFO     | _internal            |  * Restarting with stat
+2026-03-09 07:36:27 | INFO     | logging_config       | Logging configured — file: /app/logs/app.log
+2026-03-09 07:36:27 | INFO     | __init__             | MongoDB connection initialised
+2026-03-09 07:36:27 | INFO     | __init__             | CORS enabled
+2026-03-09 07:36:27 | INFO     | __init__             | Celery initialised with Redis broker
+2026-03-09 07:36:27 | INFO     | tornado_queue        | Tornado queue workers initialised: 3 workers in thread 'tornado-queue-workers'
+2026-03-09 07:36:27 | INFO     | __init__             | Webhook blueprint registered
+2026-03-09 07:36:27 | INFO     | tornado_queue        | Tornado IOLoop starting with 3 workers
+2026-03-09 07:36:27 | INFO     | tornado_queue        | Tornado worker-0 started
+2026-03-09 07:36:27 | INFO     | tornado_queue        | Tornado worker-1 started
+2026-03-09 07:36:27 | INFO     | tornado_queue        | Tornado worker-2 started
+2026-03-09 07:36:27 | INFO     | __init__             | MongoDB indexes ensured successfully
+2026-03-09 07:36:27 | INFO     | __init__             | Application factory complete — app ready
+2026-03-09 07:36:27 | WARNING  | _internal            |  * Debugger is active!
+2026-03-09 07:36:27 | INFO     | _internal            |  * Debugger PIN: 133-735-976
+2026-03-09 07:37:16 | INFO     | logging_config       | Logging configured — file: /app/logs/app.log
+2026-03-09 07:37:16 | INFO     | __init__             | MongoDB connection initialised
+2026-03-09 07:37:16 | INFO     | __init__             | CORS enabled
+2026-03-09 07:37:16 | INFO     | __init__             | Celery initialised with Redis broker
+2026-03-09 07:37:16 | INFO     | tornado_queue        | Tornado queue workers initialised: 3 workers in thread 'tornado-queue-workers'
+2026-03-09 07:37:16 | INFO     | __init__             | Webhook blueprint registered
+2026-03-09 07:37:16 | INFO     | tornado_queue        | Tornado IOLoop starting with 3 workers
+2026-03-09 07:37:16 | INFO     | tornado_queue        | Tornado worker-0 started
+2026-03-09 07:37:16 | INFO     | tornado_queue        | Tornado worker-1 started
+2026-03-09 07:37:16 | INFO     | tornado_queue        | Tornado worker-2 started
+2026-03-09 07:37:16 | INFO     | __init__             | MongoDB indexes ensured successfully
+2026-03-09 07:37:16 | INFO     | __init__             | Application factory complete — app ready
+2026-03-09 07:37:26 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 07:37:26 | INFO     | _internal            | 172.21.0.5 - - [09/Mar/2026 07:37:26] "GET /webhook/events/all HTTP/1.0" 200 -
+2026-03-09 07:40:30 | INFO     | logging_config       | Logging configured — file: /app/logs/app.log
+2026-03-09 07:40:30 | INFO     | __init__             | MongoDB connection initialised
+2026-03-09 07:40:30 | INFO     | __init__             | CORS enabled
+2026-03-09 07:40:30 | INFO     | __init__             | Celery initialised with Redis broker
+2026-03-09 07:40:30 | INFO     | tornado_queue        | Tornado queue workers initialised: 3 workers in thread 'tornado-queue-workers'
+2026-03-09 07:40:30 | INFO     | __init__             | Webhook blueprint registered
+2026-03-09 07:40:30 | INFO     | tornado_queue        | Tornado IOLoop starting with 3 workers
+2026-03-09 07:40:30 | INFO     | tornado_queue        | Tornado worker-0 started
+2026-03-09 07:40:30 | INFO     | tornado_queue        | Tornado worker-1 started
+2026-03-09 07:40:30 | INFO     | tornado_queue        | Tornado worker-2 started
+2026-03-09 07:40:30 | INFO     | __init__             | MongoDB indexes ensured successfully
+2026-03-09 07:40:30 | INFO     | __init__             | Application factory complete — app ready
+2026-03-09 07:40:30 | INFO     | _internal            | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.21.0.5:5000
+2026-03-09 07:40:30 | INFO     | _internal            | [33mPress CTRL+C to quit[0m
+2026-03-09 07:40:30 | INFO     | _internal            |  * Restarting with stat
+2026-03-09 07:40:31 | INFO     | logging_config       | Logging configured — file: /app/logs/app.log
+2026-03-09 07:40:31 | INFO     | __init__             | MongoDB connection initialised
+2026-03-09 07:40:31 | INFO     | __init__             | CORS enabled
+2026-03-09 07:40:31 | INFO     | __init__             | Celery initialised with Redis broker
+2026-03-09 07:40:31 | INFO     | tornado_queue        | Tornado queue workers initialised: 3 workers in thread 'tornado-queue-workers'
+2026-03-09 07:40:31 | INFO     | __init__             | Webhook blueprint registered
+2026-03-09 07:40:31 | INFO     | tornado_queue        | Tornado IOLoop starting with 3 workers
+2026-03-09 07:40:31 | INFO     | tornado_queue        | Tornado worker-0 started
+2026-03-09 07:40:31 | INFO     | tornado_queue        | Tornado worker-1 started
+2026-03-09 07:40:31 | INFO     | tornado_queue        | Tornado worker-2 started
+2026-03-09 07:40:31 | INFO     | __init__             | MongoDB indexes ensured successfully
+2026-03-09 07:40:31 | INFO     | __init__             | Application factory complete — app ready
+2026-03-09 07:40:31 | INFO     | logging_config       | Logging configured — file: /app/logs/app.log
+2026-03-09 07:40:31 | INFO     | __init__             | MongoDB connection initialised
+2026-03-09 07:40:31 | INFO     | __init__             | CORS enabled
+2026-03-09 07:40:31 | INFO     | __init__             | Celery initialised with Redis broker
+2026-03-09 07:40:31 | INFO     | tornado_queue        | Tornado queue workers initialised: 3 workers in thread 'tornado-queue-workers'
+2026-03-09 07:40:31 | INFO     | __init__             | Webhook blueprint registered
+2026-03-09 07:40:31 | INFO     | tornado_queue        | Tornado IOLoop starting with 3 workers
+2026-03-09 07:40:31 | INFO     | tornado_queue        | Tornado worker-0 started
+2026-03-09 07:40:31 | INFO     | tornado_queue        | Tornado worker-1 started
+2026-03-09 07:40:31 | INFO     | tornado_queue        | Tornado worker-2 started
+2026-03-09 07:40:31 | INFO     | __init__             | MongoDB indexes ensured successfully
+2026-03-09 07:40:31 | INFO     | __init__             | Application factory complete — app ready
+2026-03-09 07:40:31 | WARNING  | _internal            |  * Debugger is active!
+2026-03-09 07:40:31 | INFO     | _internal            |  * Debugger PIN: 112-157-032
+2026-03-09 07:41:06 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 07:41:06 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 07:41:06] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 07:41:20 | INFO     | routes               | Received webhook: event_type=push
+2026-03-09 07:41:20 | INFO     | routes               | Event enqueued for async processing: action=PUSH, request_id=bc5112f1a552283e0d2afe7384fac5761773b72a
+2026-03-09 07:41:20 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 07:41:20] "POST /webhook/receiver HTTP/1.1" 200 -
+2026-03-09 07:41:20 | INFO     | tornado_queue        | Dispatched Celery task: action=PUSH, request_id=bc5112f1a552283e0d2afe7384fac5761773b72a
+2026-03-09 07:41:21 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 07:41:21 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 07:41:21] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 07:41:37 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 07:41:37 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 07:41:37] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 07:41:51 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 07:41:51 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 07:41:51] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 07:42:06 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 07:42:06 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 07:42:06] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 07:42:21 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 07:42:21 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 07:42:21] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 07:42:36 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 07:42:36 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 07:42:36] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 07:42:51 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 07:42:51 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 07:42:51] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 07:43:06 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 07:43:06 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 07:43:06] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 07:43:21 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 07:43:21 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 07:43:21] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 07:43:36 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 07:43:36 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 07:43:36] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 07:43:51 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 07:43:51 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 07:43:51] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 07:44:06 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 07:44:06 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 07:44:06] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 07:44:21 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 07:44:21 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 07:44:21] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 07:44:36 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 07:44:36 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 07:44:36] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 07:44:43 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 07:44:43 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 07:44:43] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 07:45:09 | INFO     | logging_config       | Logging configured — file: /app/logs/app.log
+2026-03-09 07:45:09 | INFO     | __init__             | MongoDB connection initialised
+2026-03-09 07:45:09 | INFO     | __init__             | CORS enabled
+2026-03-09 07:45:09 | INFO     | __init__             | Celery initialised with Redis broker
+2026-03-09 07:45:09 | INFO     | tornado_queue        | Tornado queue workers initialised: 3 workers in thread 'tornado-queue-workers'
+2026-03-09 07:45:09 | INFO     | __init__             | Webhook blueprint registered
+2026-03-09 07:45:10 | INFO     | tornado_queue        | Tornado IOLoop starting with 3 workers
+2026-03-09 07:45:10 | INFO     | tornado_queue        | Tornado worker-0 started
+2026-03-09 07:45:10 | INFO     | tornado_queue        | Tornado worker-1 started
+2026-03-09 07:45:10 | INFO     | tornado_queue        | Tornado worker-2 started
+2026-03-09 07:45:10 | INFO     | __init__             | MongoDB indexes ensured successfully
+2026-03-09 07:45:10 | INFO     | __init__             | Application factory complete — app ready
+2026-03-09 07:45:10 | INFO     | _internal            | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.21.0.4:5000
+2026-03-09 07:45:10 | INFO     | _internal            | [33mPress CTRL+C to quit[0m
+2026-03-09 07:45:10 | INFO     | _internal            |  * Restarting with stat
+2026-03-09 07:45:10 | INFO     | logging_config       | Logging configured — file: /app/logs/app.log
+2026-03-09 07:45:10 | INFO     | __init__             | MongoDB connection initialised
+2026-03-09 07:45:10 | INFO     | __init__             | CORS enabled
+2026-03-09 07:45:10 | INFO     | __init__             | Celery initialised with Redis broker
+2026-03-09 07:45:10 | INFO     | tornado_queue        | Tornado queue workers initialised: 3 workers in thread 'tornado-queue-workers'
+2026-03-09 07:45:10 | INFO     | __init__             | Webhook blueprint registered
+2026-03-09 07:45:10 | INFO     | tornado_queue        | Tornado IOLoop starting with 3 workers
+2026-03-09 07:45:10 | INFO     | tornado_queue        | Tornado worker-0 started
+2026-03-09 07:45:10 | INFO     | tornado_queue        | Tornado worker-1 started
+2026-03-09 07:45:10 | INFO     | tornado_queue        | Tornado worker-2 started
+2026-03-09 07:45:10 | INFO     | __init__             | MongoDB indexes ensured successfully
+2026-03-09 07:45:10 | INFO     | __init__             | Application factory complete — app ready
+2026-03-09 07:45:10 | INFO     | logging_config       | Logging configured — file: /app/logs/app.log
+2026-03-09 07:45:10 | INFO     | __init__             | MongoDB connection initialised
+2026-03-09 07:45:10 | INFO     | __init__             | CORS enabled
+2026-03-09 07:45:10 | INFO     | __init__             | Celery initialised with Redis broker
+2026-03-09 07:45:10 | INFO     | tornado_queue        | Tornado queue workers initialised: 3 workers in thread 'tornado-queue-workers'
+2026-03-09 07:45:10 | INFO     | __init__             | Webhook blueprint registered
+2026-03-09 07:45:10 | INFO     | tornado_queue        | Tornado IOLoop starting with 3 workers
+2026-03-09 07:45:10 | INFO     | tornado_queue        | Tornado worker-0 started
+2026-03-09 07:45:10 | INFO     | tornado_queue        | Tornado worker-1 started
+2026-03-09 07:45:10 | INFO     | tornado_queue        | Tornado worker-2 started
+2026-03-09 07:45:10 | INFO     | __init__             | MongoDB indexes ensured successfully
+2026-03-09 07:45:10 | INFO     | __init__             | Application factory complete — app ready
+2026-03-09 07:45:10 | WARNING  | _internal            |  * Debugger is active!
+2026-03-09 07:45:10 | INFO     | _internal            |  * Debugger PIN: 107-199-651
+2026-03-09 07:45:16 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 07:45:16 | INFO     | _internal            | 172.21.0.6 - - [09/Mar/2026 07:45:16] "GET /webhook/events/all HTTP/1.0" 200 -
+2026-03-09 07:47:19 | INFO     | logging_config       | Logging configured — file: /app/logs/app.log
+2026-03-09 07:47:19 | INFO     | __init__             | MongoDB connection initialised
+2026-03-09 07:47:19 | INFO     | __init__             | CORS enabled
+2026-03-09 07:47:19 | INFO     | __init__             | Celery initialised with Redis broker
+2026-03-09 07:47:19 | INFO     | tornado_queue        | Tornado queue workers initialised: 3 workers in thread 'tornado-queue-workers'
+2026-03-09 07:47:19 | INFO     | __init__             | Webhook blueprint registered
+2026-03-09 07:47:19 | INFO     | tornado_queue        | Tornado IOLoop starting with 3 workers
+2026-03-09 07:47:19 | INFO     | tornado_queue        | Tornado worker-0 started
+2026-03-09 07:47:19 | INFO     | tornado_queue        | Tornado worker-1 started
+2026-03-09 07:47:19 | INFO     | tornado_queue        | Tornado worker-2 started
+2026-03-09 07:47:19 | INFO     | __init__             | MongoDB indexes ensured successfully
+2026-03-09 07:47:19 | INFO     | __init__             | Application factory complete — app ready
+2026-03-09 07:47:19 | INFO     | _internal            | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.21.0.4:5000
+2026-03-09 07:47:19 | INFO     | _internal            | [33mPress CTRL+C to quit[0m
+2026-03-09 07:47:19 | INFO     | _internal            |  * Restarting with stat
+2026-03-09 07:47:20 | INFO     | logging_config       | Logging configured — file: /app/logs/app.log
+2026-03-09 07:47:20 | INFO     | __init__             | MongoDB connection initialised
+2026-03-09 07:47:20 | INFO     | __init__             | CORS enabled
+2026-03-09 07:47:20 | INFO     | __init__             | Celery initialised with Redis broker
+2026-03-09 07:47:20 | INFO     | tornado_queue        | Tornado queue workers initialised: 3 workers in thread 'tornado-queue-workers'
+2026-03-09 07:47:20 | INFO     | __init__             | Webhook blueprint registered
+2026-03-09 07:47:20 | INFO     | tornado_queue        | Tornado IOLoop starting with 3 workers
+2026-03-09 07:47:20 | INFO     | tornado_queue        | Tornado worker-0 started
+2026-03-09 07:47:20 | INFO     | tornado_queue        | Tornado worker-1 started
+2026-03-09 07:47:20 | INFO     | tornado_queue        | Tornado worker-2 started
+2026-03-09 07:47:20 | INFO     | __init__             | MongoDB indexes ensured successfully
+2026-03-09 07:47:20 | INFO     | __init__             | Application factory complete — app ready
+2026-03-09 07:47:20 | WARNING  | _internal            |  * Debugger is active!
+2026-03-09 07:47:20 | INFO     | _internal            |  * Debugger PIN: 289-883-464
+2026-03-09 07:52:06 | INFO     | logging_config       | Logging configured — file: /app/logs/app.log
+2026-03-09 07:52:06 | INFO     | __init__             | MongoDB connection initialised
+2026-03-09 07:52:06 | INFO     | __init__             | CORS enabled
+2026-03-09 07:52:06 | INFO     | __init__             | Celery initialised with Redis broker
+2026-03-09 07:52:06 | INFO     | tornado_queue        | Tornado queue workers initialised: 3 workers in thread 'tornado-queue-workers'
+2026-03-09 07:52:06 | INFO     | __init__             | Webhook blueprint registered
+2026-03-09 07:52:06 | INFO     | tornado_queue        | Tornado IOLoop starting with 3 workers
+2026-03-09 07:52:06 | INFO     | tornado_queue        | Tornado worker-0 started
+2026-03-09 07:52:06 | INFO     | tornado_queue        | Tornado worker-1 started
+2026-03-09 07:52:06 | INFO     | tornado_queue        | Tornado worker-2 started
+2026-03-09 07:52:06 | INFO     | __init__             | MongoDB indexes ensured successfully
+2026-03-09 07:52:06 | INFO     | __init__             | Application factory complete — app ready
+2026-03-09 07:52:35 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 07:52:35 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 07:52:35] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 07:52:40 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 07:52:40 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 07:52:40] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 07:52:55 | INFO     | routes               | Received webhook: event_type=push
+2026-03-09 07:52:55 | INFO     | routes               | Event enqueued for async processing: action=PUSH, request_id=3325ff00cee1095d543e78a593e926d90dbac435
+2026-03-09 07:52:55 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 07:52:55] "POST /webhook/receiver HTTP/1.1" 200 -
+2026-03-09 07:52:55 | INFO     | tornado_queue        | Dispatched Celery task: action=PUSH, request_id=3325ff00cee1095d543e78a593e926d90dbac435
+2026-03-09 07:52:56 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 07:52:56 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 07:52:56] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 07:53:10 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 07:53:10 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 07:53:10] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 07:53:25 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 07:53:25 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 07:53:25] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 07:53:40 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 07:53:40 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 07:53:40] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 07:53:55 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 07:53:55 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 07:53:55] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 07:54:10 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 07:54:10 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 07:54:10] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 07:54:25 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 07:54:25 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 07:54:25] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 07:54:38 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 07:54:38 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 07:54:38] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 07:54:53 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 07:54:53 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 07:54:53] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 07:55:08 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 07:55:08 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 07:55:08] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 07:55:23 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 07:55:23 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 07:55:23] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 07:55:25 | INFO     | routes               | Received webhook: event_type=push
+2026-03-09 07:55:25 | INFO     | routes               | Event enqueued for async processing: action=PUSH, request_id=95f55ce016aa8e6892b5b7a5d177f82a74032594
+2026-03-09 07:55:25 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 07:55:25] "POST /webhook/receiver HTTP/1.1" 200 -
+2026-03-09 07:55:25 | INFO     | tornado_queue        | Dispatched Celery task: action=PUSH, request_id=95f55ce016aa8e6892b5b7a5d177f82a74032594
+2026-03-09 07:55:29 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 07:55:29 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 07:55:29] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 07:55:36 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 07:55:36 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 07:55:36] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 07:55:51 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 07:55:51 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 07:55:51] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 07:56:06 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 07:56:06 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 07:56:06] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 07:56:21 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 07:56:21 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 07:56:21] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 07:56:36 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 07:56:36 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 07:56:36] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 07:56:51 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 07:56:51 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 07:56:51] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 07:57:06 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 07:57:06 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 07:57:06] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 07:57:49 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 07:57:49 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 07:57:49] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 07:58:33 | INFO     | logging_config       | Logging configured — file: /app/logs/app.log
+2026-03-09 07:58:33 | INFO     | __init__             | MongoDB connection initialised
+2026-03-09 07:58:33 | INFO     | __init__             | CORS enabled
+2026-03-09 07:58:33 | INFO     | __init__             | Celery initialised with Redis broker
+2026-03-09 07:58:33 | INFO     | tornado_queue        | Tornado queue workers initialised: 3 workers in thread 'tornado-queue-workers'
+2026-03-09 07:58:33 | INFO     | __init__             | Webhook blueprint registered
+2026-03-09 07:58:33 | INFO     | tornado_queue        | Tornado IOLoop starting with 3 workers
+2026-03-09 07:58:33 | INFO     | tornado_queue        | Tornado worker-0 started
+2026-03-09 07:58:33 | INFO     | tornado_queue        | Tornado worker-1 started
+2026-03-09 07:58:33 | INFO     | __init__             | MongoDB indexes ensured successfully
+2026-03-09 07:58:33 | INFO     | tornado_queue        | Tornado worker-2 started
+2026-03-09 07:58:33 | INFO     | __init__             | Application factory complete — app ready
+2026-03-09 07:58:49 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 07:58:49 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 07:58:49] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 07:59:28 | INFO     | logging_config       | Logging configured — file: /app/logs/app.log
+2026-03-09 07:59:28 | INFO     | __init__             | MongoDB connection initialised
+2026-03-09 07:59:28 | INFO     | __init__             | CORS enabled
+2026-03-09 07:59:28 | INFO     | __init__             | Celery initialised with Redis broker
+2026-03-09 07:59:28 | INFO     | tornado_queue        | Tornado queue workers initialised: 3 workers in thread 'tornado-queue-workers'
+2026-03-09 07:59:28 | INFO     | __init__             | Webhook blueprint registered
+2026-03-09 07:59:28 | INFO     | tornado_queue        | Tornado IOLoop starting with 3 workers
+2026-03-09 07:59:28 | INFO     | tornado_queue        | Tornado worker-0 started
+2026-03-09 07:59:28 | INFO     | tornado_queue        | Tornado worker-1 started
+2026-03-09 07:59:28 | INFO     | tornado_queue        | Tornado worker-2 started
+2026-03-09 07:59:28 | INFO     | __init__             | MongoDB indexes ensured successfully
+2026-03-09 07:59:28 | INFO     | __init__             | Application factory complete — app ready
+2026-03-09 07:59:28 | INFO     | _internal            | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.21.0.4:5000
+2026-03-09 07:59:28 | INFO     | _internal            | [33mPress CTRL+C to quit[0m
+2026-03-09 07:59:28 | INFO     | _internal            |  * Restarting with stat
+2026-03-09 07:59:28 | INFO     | logging_config       | Logging configured — file: /app/logs/app.log
+2026-03-09 07:59:28 | INFO     | __init__             | MongoDB connection initialised
+2026-03-09 07:59:28 | INFO     | __init__             | CORS enabled
+2026-03-09 07:59:28 | INFO     | __init__             | Celery initialised with Redis broker
+2026-03-09 07:59:28 | INFO     | tornado_queue        | Tornado queue workers initialised: 3 workers in thread 'tornado-queue-workers'
+2026-03-09 07:59:28 | INFO     | __init__             | Webhook blueprint registered
+2026-03-09 07:59:28 | INFO     | tornado_queue        | Tornado IOLoop starting with 3 workers
+2026-03-09 07:59:28 | INFO     | tornado_queue        | Tornado worker-0 started
+2026-03-09 07:59:28 | INFO     | tornado_queue        | Tornado worker-1 started
+2026-03-09 07:59:28 | INFO     | tornado_queue        | Tornado worker-2 started
+2026-03-09 07:59:28 | INFO     | __init__             | MongoDB indexes ensured successfully
+2026-03-09 07:59:28 | INFO     | __init__             | Application factory complete — app ready
+2026-03-09 07:59:29 | INFO     | logging_config       | Logging configured — file: /app/logs/app.log
+2026-03-09 07:59:29 | INFO     | __init__             | MongoDB connection initialised
+2026-03-09 07:59:29 | INFO     | __init__             | CORS enabled
+2026-03-09 07:59:29 | INFO     | __init__             | Celery initialised with Redis broker
+2026-03-09 07:59:29 | INFO     | tornado_queue        | Tornado queue workers initialised: 3 workers in thread 'tornado-queue-workers'
+2026-03-09 07:59:29 | INFO     | __init__             | Webhook blueprint registered
+2026-03-09 07:59:29 | INFO     | tornado_queue        | Tornado IOLoop starting with 3 workers
+2026-03-09 07:59:29 | INFO     | tornado_queue        | Tornado worker-0 started
+2026-03-09 07:59:29 | INFO     | tornado_queue        | Tornado worker-1 started
+2026-03-09 07:59:29 | INFO     | tornado_queue        | Tornado worker-2 started
+2026-03-09 07:59:29 | INFO     | __init__             | MongoDB indexes ensured successfully
+2026-03-09 07:59:29 | INFO     | __init__             | Application factory complete — app ready
+2026-03-09 07:59:29 | WARNING  | _internal            |  * Debugger is active!
+2026-03-09 07:59:29 | INFO     | _internal            |  * Debugger PIN: 107-075-787
+2026-03-09 07:59:55 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 07:59:55 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 07:59:55] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 08:00:11 | INFO     | routes               | Initial load: returning 0 event(s)
+2026-03-09 08:00:11 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 08:00:11] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 08:00:12 | INFO     | routes               | Received webhook: event_type=push
+2026-03-09 08:00:12 | INFO     | routes               | Event enqueued for async processing: action=PUSH, request_id=f99f93edc2913a1613d2ca4fb8476691abfb5821
+2026-03-09 08:00:12 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 08:00:12] "POST /webhook/receiver HTTP/1.1" 200 -
+2026-03-09 08:00:12 | INFO     | tornado_queue        | Dispatched Celery task: action=PUSH, request_id=f99f93edc2913a1613d2ca4fb8476691abfb5821
+2026-03-09 08:00:12 | INFO     | tasks                | Event stored via Celery: action=PUSH, request_id=f99f93edc2913a1613d2ca4fb8476691abfb5821
+2026-03-09 08:00:22 | INFO     | routes               | Initial load: returning 1 event(s)
+2026-03-09 08:00:22 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 08:00:22] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 08:00:37 | INFO     | routes               | Initial load: returning 1 event(s)
+2026-03-09 08:00:37 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 08:00:37] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 08:00:52 | INFO     | routes               | Initial load: returning 1 event(s)
+2026-03-09 08:00:52 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 08:00:52] "GET /webhook/events/all HTTP/1.1" 200 -
+2026-03-09 08:01:07 | INFO     | routes               | Initial load: returning 1 event(s)
+2026-03-09 08:01:07 | INFO     | _internal            | 172.21.0.1 - - [09/Mar/2026 08:01:07] "GET /webhook/events/all HTTP/1.1" 200 -
