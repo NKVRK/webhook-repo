@@ -26,15 +26,39 @@ export default function EventList() {
   const [countdown, setCountdown] = useState(POLL_INTERVAL_MS / 1000);
 
   /**
-   * Fetch the latest 15-second window of events from the server
-   * and replace the current displayed list entirely.
+   * Fetch the latest window of events.
+   * If we already have events, fetch only new ones since the latest timestamp.
+   * Otherwise, fetch the full 15-minute history.
    */
-  const fetchLatestEvents = useCallback(async () => {
+  const fetchLatestEvents = useCallback(async (currentEvents) => {
     try {
-      const res = await fetch("/webhook/events/all");
+      let url = "/webhook/events/all";
+
+      // If we have events, get the timestamp of the newest one (index 0)
+      if (currentEvents && currentEvents.length > 0) {
+        const newestTimestamp = currentEvents[0].timestamp;
+        url = `/webhook/events?after=${newestTimestamp}`;
+      }
+
+      const res = await fetch(url);
       if (!res.ok) throw new Error(`Server returned ${res.status}`);
       const data = await res.json();
-      setEvents(data.events);
+
+      // If we fetched new events incrementally, prepend them to the list
+      // We also need to filter out any events that are now older than 15 minutes!
+      const fifteenMinsAgo = new Date(Date.now() - 15 * 60 * 1000);
+
+      if (currentEvents && currentEvents.length > 0 && data.events) {
+        setEvents((prevEvents) => {
+          // Prepend new data and filter out expired events
+          const merged = [...data.events, ...prevEvents];
+          return merged.filter((evt) => new Date(evt.timestamp) >= fifteenMinsAgo);
+        });
+      } else if (!currentEvents || currentEvents.length === 0) {
+        // Initial load or full refresh
+        setEvents(data.events);
+      }
+
       setError(null);
     } catch (err) {
       console.error("Polling error:", err);
@@ -45,18 +69,24 @@ export default function EventList() {
     }
   }, []);
 
-  /* ── initial fetch: load events from the last 15 seconds ── */
+  /* ── initial fetch: load events from the last 15 minutes ── */
   useEffect(() => {
     const init = async () => {
-      await fetchLatestEvents();
+      await fetchLatestEvents([]);
       setLoading(false);
     };
     init();
   }, [fetchLatestEvents]);
 
-  /* ── polling: replace events with latest 15-second window ── */
+  /* ── polling: fetch new events incrementally ── */
   useEffect(() => {
-    const intervalId = setInterval(fetchLatestEvents, POLL_INTERVAL_MS);
+    // We use a functional update inside setInterval so it always has the latest events state
+    const intervalId = setInterval(() => {
+      setEvents((currentEvents) => {
+        fetchLatestEvents(currentEvents);
+        return currentEvents; // React requires we return the state if we don't want to change it immediately here
+      });
+    }, POLL_INTERVAL_MS);
     return () => clearInterval(intervalId);
   }, [fetchLatestEvents]);
 
